@@ -40,6 +40,7 @@ global $wp_meta_boxes;
 
 wp_add_dashboard_widget('custom_help_widget', 'Get Support for Your Website', 'custom_dashboard_help');
 }
+	// All the Stuff below you should obviously change so that it is consistent with your own branding n' stuff...
 
 function custom_dashboard_help() {
 echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="http://sphotos.xx.fbcdn.net/hphotos-ash4/423659_10150636190229647_329024654646_9117065_1626144716_n.jpg"><ul>
@@ -53,6 +54,8 @@ echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="h
 
 /* Custom Login and Admin Areas
 -------------------------------------------------- */
+/* 	A note of caution here. The admin area has changed in a number of ways with the last few releases of WordPress. It's not the greatest idea make a bunch of changes here. In other words, all this stuff I'm doing here is ill-advised. ;-)
+*/
 
 
 // Add DigiSavvy Admin Bar Info
@@ -94,19 +97,10 @@ add_action('admin_bar_menu', 'dg_admin_bar_menu');
 
 // calling your own login css so you can style it 
 function LoginCSS() {
-		echo '<link rel="stylesheet" type="text/css" href="'. CHILD_URL . '/lib/css/login.css">';
+		echo '<link rel="stylesheet" type="text/css" href="'. CHILD_URL . '/lib/css/login.css">'; // Change to the the appropriate directory for your child theme
 	}
 	add_action('login_head', 'LoginCSS');
-	
 
-/************* CUSTOMIZE ADMIN *******************/
-
-/*
-I don't really reccomend editing the admin too much
-as things may get funky if Wordpress updates. Here
-are a few funtions which you can choose to use if 
-you like.
-*/
 
 // Remove WordPress Admin Logo
 function wps_admin_bar() {
@@ -115,7 +109,7 @@ function wps_admin_bar() {
 }
 add_action( 'wp_before_admin_bar_render', 'wps_admin_bar' ); 
 
-// CUSTOM ADMIN DASHBOARD HEADER LOGO
+// Changing admin dashboard logo
 
 function custom_admin_logo() {
 	echo '<style type="text/css">#header-logo { background-image: url('.get_bloginfo('. CHILD_URL .').'/images/logo_admin_dashboard.png) !important; }</style>';
