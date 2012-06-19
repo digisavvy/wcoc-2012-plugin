@@ -1,8 +1,8 @@
 <?php
 /*
-Plugin Name: A Branding Plugin
+Plugin Name: WCOC 2012 Customized Admin Plugin
 Description: Customizes certain elements of your site's admin area
-Version: 0.2
+Version: 0.3
 License: GPL
 Author: Alex Vasquez
 Author URI: http://digisavvy.com
@@ -57,6 +57,32 @@ echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="h
 /* 	A note of caution here. The admin area has changed in a number of ways with the last few releases of WordPress. It's not the greatest idea make a bunch of changes here. In other words, all this stuff I'm doing here is ill-advised. ;-)
 */
 
+// Re-order Admin Menus - Uncomment to change the order of your menus - Reference this article http://wp.tutsplus.com/tutorials/creative-coding/customizing-your-wordpress-admin/ for a more complete list of menus you can modify. Using firebug to determine the menu ID for menus that plugins create is also helpful
+/*
+function custom_menu_order($menu_ord) {
+	if (!$menu_ord) return true;
+
+	return array(
+		'index.php', // Dashboard
+		'separator1', // First separator
+		'edit.php', // Posts
+		'upload.php', // Media
+		'link-manager.php', // Links
+		'edit.php?post_type=page', // Pages
+		'edit-comments.php', // Comments
+		'separator2', // Second separator
+		'themes.php', // Appearance
+		'plugins.php', // Plugins
+		'users.php', // Users
+		'tools.php', // Tools
+		'options-general.php', // Settings
+		'separator-last', // Last separator
+	);
+}
+add_filter('custom_menu_order', 'custom_menu_order'); // Activate custom_menu_order
+add_filter('menu_order', 'custom_menu_order');
+
+*/
 
 // Add DigiSavvy Admin Bar Info
 function dg_admin_bar_menu() {
