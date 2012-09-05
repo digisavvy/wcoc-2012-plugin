@@ -31,24 +31,17 @@ function disable_default_dashboard_widgets() {
 
 /* DigiSavvy Dashboard Help Widget
 -------------------------------------------------- */
-
-add_action('wp_dashboard_setup', 'digisavvy_widget');
-
-function digisavvy_widget() {
-
-global $wp_meta_boxes;
-
-wp_add_dashboard_widget('custom_help_widget', 'Get Support for Your Website', 'custom_dashboard_help');
+// ** DigiSavvy Dashboard Functions ** //
+add_action( 'wp_dashboard_setup', 'my_dashboard_setup_function' );
+function my_dashboard_setup_function() {
+    add_meta_box( 'my_dashboard_widget', 'Need Help With Your Website?', 'my_dashboard_widget_function', 'dashboard', 'side', 'high' );
 }
-	// All the Stuff below you should obviously change so that it is consistent with your own branding n' stuff...
 
-function custom_dashboard_help() {
-echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="http://sphotos.xx.fbcdn.net/hphotos-ash4/423659_10150636190229647_329024654646_9117065_1626144716_n.jpg"><ul>
-	<li><strong>Launch Date:</strong> June 2012</li>
-	<li><strong>Developed by:</strong> DigiSavvy</li>
-	<li><strong>Hosting Provider</strong>: InMotion Hosting</li>
-	<li>Need help? Contact the DigiSavvy Team <a href="mailto:info@digisavvy.com">here</a>. For additional information on what we do, visit our site: <a href="http://digisavvy.com/contact" target="_blank">DigiSavvy</a> -or- feel free to give us a call:<strong> 855-344-7289</strong></li>
-		</ul>';
+	// All the Stuff below you should obviously change so that it is consistent with your own branding n' stuff...
+	
+function my_dashboard_widget_function() {
+    // widget content goes here
+echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="http://sphotos.xx.fbcdn.net/hphotos-ash4/423659_10150636190229647_329024654646_9117065_1626144716_n.jpg"><p>Need help? Contact the DigiSavvy Team <a href="mailto:info@digisavvy.com">here</a>.<br /> For additional information on what we do, visit our site: <a href="http://digisavvy.com/contact" target="_blank">DigiSavvy</a><br /> Or feel free to give us a call:<strong> 855-344-7289</strong></p> <p>If you have questions using your site, please refer to the <a href="http://pilarsteinborn.com/wp-admin/admin.php?page=wp-help-documents">Using Your Website</a> menu-item on the left. We will place articles there that explain how to use your site</p>';
 }
 
 
