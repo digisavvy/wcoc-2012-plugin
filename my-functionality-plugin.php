@@ -26,22 +26,22 @@ function disable_default_dashboard_widgets() {
 		
 		// removing plugin dashboard boxes 
 		remove_meta_box('yoast_db_widget', 'dashboard', 'normal');         // Yoast's SEO Plugin Widget
-	
-} }
+	} 
+}
 
 /* DigiSavvy Dashboard Help Widget
 -------------------------------------------------- */
 // ** DigiSavvy Dashboard Functions ** //
 add_action( 'wp_dashboard_setup', 'my_dashboard_setup_function' );
-function my_dashboard_setup_function() {
-    add_meta_box( 'my_dashboard_widget', 'Need Help With Your Website?', 'my_dashboard_widget_function', 'dashboard', 'side', 'high' );
-}
+	function my_dashboard_setup_function() {
+    		add_meta_box( 'my_dashboard_widget', 'Need Help With Your Website?', 'my_dashboard_widget_function', 'dashboard', 'side', 'high' );
+	}
 
 	// All the Stuff below you should obviously change so that it is consistent with your own branding n' stuff...
 	
 function my_dashboard_widget_function() {
-    // widget content goes here
-echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="http://sphotos.xx.fbcdn.net/hphotos-ash4/423659_10150636190229647_329024654646_9117065_1626144716_n.jpg"><p>Need help? Contact the DigiSavvy Team <a href="mailto:info@digisavvy.com">here</a>.<br /> For additional information on what we do, visit our site: <a href="http://digisavvy.com/contact" target="_blank">DigiSavvy</a><br /> Or feel free to give us a call:<strong> 855-344-7289</strong></p> <p>If you have questions using your site, please refer to the <a href="http://pilarsteinborn.com/wp-admin/admin.php?page=wp-help-documents">Using Your Website</a> menu-item on the left. We will place articles there that explain how to use your site</p>';
+    	// widget content goes here
+	echo '<img style="margin-right:10px;" align="left" height="50" width="50" src="http://sphotos.xx.fbcdn.net/hphotos-ash4/423659_10150636190229647_329024654646_9117065_1626144716_n.jpg"><p>Need help? Contact the DigiSavvy Team <a href="mailto:info@digisavvy.com">here</a>.<br /> For additional information on what we do, visit our site: <a href="http://digisavvy.com/contact" target="_blank">DigiSavvy</a><br /> Or feel free to give us a call:<strong> 855-344-7289</strong></p> <p>If you have questions using your site, please refer to the <a href="http://pilarsteinborn.com/wp-admin/admin.php?page=wp-help-documents">Using Your Website</a> menu-item on the left. We will place articles there that explain how to use your site</p>';
 }
 
 
@@ -78,55 +78,58 @@ add_filter('menu_order', 'custom_menu_order');
 */
 
 // Add DigiSavvy Admin Bar Info
+add_action('admin_bar_menu', 'dg_admin_bar_menu');
 function dg_admin_bar_menu() {
 	global $wp_admin_bar;
 	if ( !is_super_admin() || !is_admin_bar_showing() )
 		return;
-	$wp_admin_bar->add_menu( array(
-	'id' => 'enla_menu',
-	'title' => __( 'Helpful Links'),
-	'href' => FALSE ) );
-	$wp_admin_bar->add_menu( array(
-	'parent' => 'enla_menu',
-	'title' => __( 'Your Webhosting Cpanel'),
-	'href' => '#' ) );
-	$wp_admin_bar->add_menu( array(
-	'parent' => 'enla_menu',
-	'title' => __( 'Your DigiSavvy Account Portal'),
-	'href' => '#' ) );
-	$wp_admin_bar->add_menu( array(
-	'parent' => 'enla_menu',
-	'title' => __( 'Get Support'),
-	'href' => '#' ) );
-	$wp_admin_bar->add_menu( array(
-	'parent' => 'enla_menu',
-	'title' => __( 'Contact Us'),
-	'href' => '#' ) );
-	$wp_admin_bar->add_menu( array(
-	'parent' => 'enla_menu',
-	'title' => __( 'Like us on Facebook'),
-	'href' => 'http://www.facebook.com/digisavvy' ) );
-	$wp_admin_bar->add_menu( array(
-	'parent' => 'enla_menu',
-	'title' => __( 'Follow us on Twitter'),
-	'href' => 'http://www.twitter.com/digi_savvy' ) );
+		$wp_admin_bar->add_menu( array(
+		'id' => 'enla_menu',
+		'title' => __( 'Helpful Links'),
+		'href' => FALSE ) );
+		$wp_admin_bar->add_menu( array(
+		'parent' => 'enla_menu',
+		'title' => __( 'Your Webhosting Cpanel'),
+		'href' => '#' ) );
+		$wp_admin_bar->add_menu( array(
+		'parent' => 'enla_menu',
+		'title' => __( 'Your DigiSavvy Account Portal'),
+		'href' => '#' ) );
+		$wp_admin_bar->add_menu( array(
+		'parent' => 'enla_menu',
+		'title' => __( 'Get Support'),
+		'href' => '#' ) );
+		$wp_admin_bar->add_menu( array(
+		'parent' => 'enla_menu',
+		'title' => __( 'Contact Us'),
+		'href' => '#' ) );
+		$wp_admin_bar->add_menu( array(
+		'parent' => 'enla_menu',
+		'title' => __( 'Like us on Facebook'),
+		'href' => 'http://www.facebook.com/digisavvy' ) );
+		$wp_admin_bar->add_menu( array(
+		'parent' => 'enla_menu',
+		'title' => __( 'Follow us on Twitter'),
+		'href' => 'http://www.twitter.com/digi_savvy' ) );
 }
-add_action('admin_bar_menu', 'dg_admin_bar_menu');
+
 
 
 // calling your own login css so you can style it 
+add_action('login_head', 'LoginCSS');
 function LoginCSS() {
-		echo '<link rel="stylesheet" type="text/css" href="'. CHILD_URL . '/lib/css/login.css">'; // Change to the the appropriate directory for your child theme
-	}
-	add_action('login_head', 'LoginCSS');
+	echo '<link rel="stylesheet" type="text/css" href="'. CHILD_URL . '/lib/css/login.css">'; // Change to the the appropriate directory for your child theme
+}
+
 
 
 // Remove WordPress Admin Logo
+add_action( 'wp_before_admin_bar_render', 'wps_admin_bar' ); 
 function wps_admin_bar() {
     global $wp_admin_bar;
     $wp_admin_bar->remove_menu('wp-logo');
 }
-add_action( 'wp_before_admin_bar_render', 'wps_admin_bar' ); 
+
 
 // Changing admin dashboard logo
 
@@ -154,5 +157,5 @@ add_filter('admin_footer_text', 'dg_custom_admin_footer');
 
 /* Disallow file edits of theme and plugin files
 ------------------------------------------------------------------------------------------------------------------------ */
-	define('DISALLOW_FILE_EDIT', true);
+define('DISALLOW_FILE_EDIT', true);
 
